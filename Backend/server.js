@@ -13,6 +13,15 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+const fs = require('fs');
+const path = require('path');
+
+// Ensure uploads directory exists
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+const multer = require('./middleware/multer');
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 mongoose.connect(process.env.MONGO_URI)
