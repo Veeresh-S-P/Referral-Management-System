@@ -2,13 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const path = require('path'); // ✅ Only once
-const fs = require('fs');     // ✅ Good placement
+const path = require('path'); 
+const fs = require('fs');     
 
 const authRoutes = require('./routes/authRoutes');
 const candidateRoutes = require('./routes/candidateRoutes');
 const errorHandler = require('./middleware/errorHandler');
-const multer = require('./middleware/multer'); // ✅ move near top if you want consistency
+const multer = require('./middleware/multer'); 
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Ensure uploads directory exists
+
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
